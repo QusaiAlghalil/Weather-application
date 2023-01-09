@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awesome library -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS style -->
+    <link rel="stylesheet" href="css/style.css " />
+    <title>Weather</title>
+  </head>
+  <body class="">
+    <!-- header -->
+    <header class="header">
+      <div class="left">
+        <div id="city" class="city"></div>
+        <div class="date">
+          <span></span>
+          <span id="date"></span>
+        </div>
+      </div>
+      <div class="search">
+        <input id="input" type="text" placeholder="enter a country" />
+        <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <span id="toggle" class="toggle-mode">Switch mode</span>
+    </header>
+    <!-- day status -->
+    <section id="day-weather" class="day-weather">
+      <div class="day-status">
+        <img id="day-weather-icon" src="" alt="" />
+        <span id="weather-status"></span>
+      </div>
+      <div class="day-temprature">
+        <i id="day-temp-icon" class="fa-solid fa-sun"></i>
+        <span id="day-high"> </span>
+      </div>
+      <div class="day-winds">
+        <i id="day-wind-icon" class="fa-solid fa-wind"></i>
+        <span id="day-winds"> </span>
+      </div>
+    </section>
+
+    <section class="week-weather"></section>
+    <script src="index.js"></script>
+  </body>
+</html>

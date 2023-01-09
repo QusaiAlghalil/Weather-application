@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
+:root {
+  --main-font-light: rgb(8 7 104 / 55%);
+  --main-font-dark: rgba(255, 255, 255, 0.795);
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-image: linear-gradient(rgb(0, 200, 255), rgb(0, 81, 255));
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+body.dark {
+  background-image: linear-gradient(rgb(27, 38, 41), rgb(4, 19, 50));
+}
+/******** start header *******/
+.header {
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--main-font-light);
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0px 3px 7px 2px;
+}
+.header.dark {
+  color: var(--main-font-dark);
+}
+.search {
+  position: relative;
+}
+.search input {
+  width: 200px;
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.176);
+  color: white;
+  font-size: 1rem;
+}
+.search input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.779);
+  font-size: 1rem;
+}
+#search-icon {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.779);
+}
+.toggle-mode {
+  padding: 0.5rem;
+  color: var(--main-font-light);
+  border: 2px solid rgba(255, 255, 255, 0.607);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+.toggle-mode:hover {
+  box-shadow: inset 0 0 7px 0px;
+}
+.toggle-mode.dark {
+  color: var(--main-font-dark);
+}
+/******** end header *******/
+/******** start day *******/
+.day-weather {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--main-font-light);
+}
+.day-weather.show-shadow {
+  box-shadow: 0px 3px 7px 2px;
+}
+.day-weather div {
+  height: 120px;
+}
+.day-weather.dark {
+  color: var(--main-font-dark);
+}
+.day-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.day-temprature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.day-temprature i {
+  font-size: 3rem;
+  color: yellow;
+  display: none;
+}
+.day-temprature i.show {
+  display: block;
+}
+.day-winds {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.day-winds i {
+  font-size: 2rem;
+  color: white;
+  display: none;
+}
+.day-winds i.show {
+  display: block;
+}
+.day-winds span {
+  padding-top: 20px;
+}
