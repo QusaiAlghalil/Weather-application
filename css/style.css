@@ -7,18 +7,22 @@
 :root {
   --main-font-light: rgb(8 7 104 / 55%);
   --main-font-dark: rgba(255, 255, 255, 0.795);
+  --main-padding-sections: 1rem;
 }
 body {
   font-family: "Roboto", sans-serif;
   background-image: linear-gradient(rgb(0, 200, 255), rgb(0, 81, 255));
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
 }
 body.dark {
-  background-image: linear-gradient(rgb(27, 38, 41), rgb(4, 19, 50));
+  background-image: none;
+  background-color: rgb(27, 38, 41);
+  color: var(--main-font-dark);
 }
 /******** start header *******/
 .header {
+  background-image: linear-gradient(rgb(0, 200, 255), rgb(0, 81, 255));
   padding: 1rem 1rem;
   display: flex;
   justify-content: space-between;
@@ -26,17 +30,21 @@ body.dark {
   color: var(--main-font-light);
   font-size: 1rem;
   font-weight: bold;
-  box-shadow: 0px 3px 7px 2px;
+  box-shadow: 2px 1px 5px 0px;
+  position: sticky;
+  top: 0;
 }
 .header.dark {
+  background-image: none;
+  background-color: rgb(27, 38, 41);
   color: var(--main-font-dark);
 }
 .search {
   position: relative;
 }
 .search input {
-  width: 200px;
-  padding: 5px 10px;
+  width: 13rem;
+  padding: 0.5rem 1rem;
   outline: none;
   border: none;
   border-radius: 30px;
@@ -56,6 +64,7 @@ body.dark {
   color: rgba(255, 255, 255, 0.779);
 }
 .toggle-mode {
+  text-align: center;
   padding: 0.5rem;
   color: var(--main-font-light);
   border: 2px solid rgba(255, 255, 255, 0.607);
@@ -72,17 +81,17 @@ body.dark {
 /******** end header *******/
 /******** start day *******/
 .day-weather {
-  padding-top: 1rem;
+  padding: var(--main-padding-sections) 0px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: var(--main-font-light);
 }
 .day-weather.show-shadow {
-  box-shadow: 0px 3px 7px 2px;
+  box-shadow: inset 0px 3px 8px 0px;
 }
 .day-weather div {
-  height: 120px;
+  height: 7rem;
 }
 .day-weather.dark {
   color: var(--main-font-dark);
@@ -122,5 +131,24 @@ body.dark {
   display: block;
 }
 .day-winds span {
-  padding-top: 20px;
+  padding-top: 1.2rem;
+}
+.week-weather {
+  padding: var(--main-padding-sections) 0px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.week-weather .week-day {
+  color: var(--main-font-dark);
+  font-size: 0.9rem;
+  padding: 0.8rem;
+  text-align: center;
+  box-shadow: 2px 1px 3px 0px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.week-weather .week-day p {
+  padding-top: 2px;
 }
