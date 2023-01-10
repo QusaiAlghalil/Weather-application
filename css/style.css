@@ -23,14 +23,15 @@ body.dark {
 /******** start header *******/
 .header {
   background-image: linear-gradient(rgb(0, 200, 255), rgb(0, 81, 255));
+  position: relative;
   padding: 1rem 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   color: var(--main-font-light);
   font-size: 1rem;
   font-weight: bold;
-  box-shadow: 2px 1px 5px 0px;
+  box-shadow: 2px 1px 5px 0px #7d6565;
   position: sticky;
   top: 0;
 }
@@ -38,6 +39,17 @@ body.dark {
   background-image: none;
   background-color: rgb(27, 38, 41);
   color: var(--main-font-dark);
+}
+@media screen and (max-width: 520px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .toggle-mode {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
 }
 .search {
   position: relative;
@@ -145,10 +157,39 @@ body.dark {
   font-size: 0.9rem;
   padding: 0.8rem;
   text-align: center;
-  box-shadow: 2px 1px 3px 0px;
+  box-shadow: 2px 1px 3px 0px #7d6565;
   cursor: pointer;
   border-radius: 10px;
 }
 .week-weather .week-day p {
   padding-top: 2px;
+}
+/* hours section */
+.hours-weather {
+  padding-top: var(--main-padding-sections);
+  display: flex;
+  flex-direction: column;
+}
+.hours-weather .hour {
+  display: flex;
+  flex-direction: column;
+}
+.hours-weather .hour .hour-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #7d656554;
+  color: var(--main-font-dark);
+}
+.hours-weather .hour.hide {
+  display: none;
+}
+
+/* scrollbar styling */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(87, 197, 231, 0.66);
 }
