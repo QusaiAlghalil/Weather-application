@@ -47,9 +47,17 @@ body.dark {
   }
   .toggle-mode {
     position: absolute;
+    font-size: 10px;
     top: 10px;
     right: 10px;
   }
+}
+.logo {
+  width: 35px;
+  border-radius: 19px;
+  position: absolute;
+  left: 10px;
+  top: 17px;
 }
 .search {
   position: relative;
@@ -98,15 +106,15 @@ body.dark {
   justify-content: space-around;
   align-items: center;
   color: var(--main-font-light);
-}
-.day-weather.show-shadow {
   box-shadow: inset 0px 3px 8px 0px;
 }
+
 .day-weather div {
   height: 7rem;
 }
 .day-weather.dark {
   color: var(--main-font-dark);
+  box-shadow: inset 0px 3px 8px 0px #7d6565;
 }
 .day-status {
   display: flex;
@@ -123,11 +131,8 @@ body.dark {
 .day-temprature i {
   font-size: 3rem;
   color: yellow;
-  display: none;
 }
-.day-temprature i.show {
-  display: block;
-}
+
 .day-winds {
   display: flex;
   flex-direction: column;
@@ -137,11 +142,8 @@ body.dark {
 .day-winds i {
   font-size: 2rem;
   color: white;
-  display: none;
 }
-.day-winds i.show {
-  display: block;
-}
+
 .day-winds span {
   padding-top: 1.2rem;
 }
@@ -157,9 +159,12 @@ body.dark {
   font-size: 0.9rem;
   padding: 0.8rem;
   text-align: center;
-  box-shadow: 2px 1px 3px 0px #7d6565;
+  box-shadow: 2px 1px 3px 0px;
   cursor: pointer;
   border-radius: 10px;
+}
+.week-weather .week-day.dark {
+  box-shadow: 2px 1px 3px 0px #7d6565;
 }
 .week-weather .week-day p {
   padding-top: 2px;
@@ -191,5 +196,5 @@ body.dark {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(87, 197, 231, 0.66);
+  background-color: #7d6565;
 }

@@ -7,21 +7,31 @@ const getWeather = async (country) => {
 
     const result = await response.json();
 
-    /*assign results to the variables */
-    city.textContent = `${result.location.country} ${result.location.name}`;
-    date.textContent = result.location.localtime;
-    weatherStatus.textContent = result.current.condition.text;
-    dayWeatherIcon.src = result.current.condition.icon;
-    dayHigh.innerHTML = `${result.current.temp_c} <sup>&#9900</sup> c`;
-    dayTempIcon.classList.add("show");
-    dayWinds.textContent = `${result.current.wind_kph} kph`;
-    dayWindIcon.classList.add("show");
-    dayWeather.classList.add("show-shadow");
-    /* mapping on results.forecast array  */
+    city.textContent = `${result.location.country}-${result.location.name}`;
+    date.textContent = `${result.location.localtime}`;
+    var dayWeather = document.createElement("div");
+    dayWeather.classList.add("day-weather");
+    dayWeather.innerHTML = `
+        <div class='day-status'>
+        <img id='day-weather-icon' src='${result.current.condition.icon}'/>
+        <span id='weather-status'>
+        ${result.current.condition.text}
+        </span>
+        </div>
+        <div class='day-temprature'>
+        <i id="day-temp-icon" class="fa-solid fa-sun show"></i>
+        <span id='day-high'>${result.current.temp_c} <sup>&#9900</sup> c</span>
+        </div>
+        <div class='day-winds'>
+        <i id="day-wind-icon" class="fa-solid fa-wind show"></i>
+        <span id='day-winds'>${result.current.wind_kph} kph</span>
+        </div>
+      `;
+    dayWeatherSection.appendChild(dayWeather);
 
     result.forecast.forecastday.map((e) => {
       var day = document.createElement("div");
-      /** hold hours and hide it */
+      /** set hours section and hide it */
       var hour = document.createElement("div");
       hour.classList.add("hour");
       hour.style.display = "none";
@@ -30,12 +40,13 @@ const getWeather = async (country) => {
         var hDetailes = document.createElement("div");
         hDetailes.classList.add("hour-info");
         hDetailes.innerHTML = `
-    <p>${h.time}</p>
-    <img src="${h.condition.icon}">
-    <span>${h.condition.text}</span>
-    <span>${h.temp_c} <sup>&#9900</sup> c</span>
-  `;
+        <p>${h.time}</p>
+        <img src="${h.condition.icon}">
+        <span>${h.condition.text}</span>
+        <span>${h.temp_c} <sup>&#9900</sup> c</span>
+     `;
         hour.appendChild(hDetailes);
+
         hoursWeatherSection.appendChild(hour);
       });
 
@@ -76,7 +87,7 @@ const dayHigh = document.getElementById("day-high");
 const header = document.getElementsByClassName("header")[0];
 const input = document.getElementById("input");
 const searchIocn = document.getElementById("search-icon");
-const dayWeather = document.getElementById("day-weather");
+const dayWeatherSection = document.getElementById("day-weather");
 const dayWeatherIcon = document.getElementById("day-weather-icon");
 const dayWinds = document.getElementById("day-winds");
 const dayTempIcon = document.getElementById("day-temp-icon");
@@ -89,12 +100,19 @@ toggle.addEventListener("click", () => {
   header.classList.toggle("dark");
   toggle.classList.toggle("dark");
   document.body.classList.toggle("dark");
-  dayWeather.classList.toggle("dark");
+  if (dayWeatherSection.firstChild)
+    //cuz it does't exist at the beginning
+    dayWeatherSection.firstChild.classList.toggle("dark");
+  weekWeatherSection.childNodes.forEach((item) => {
+    item.classList.toggle("dark");
+  });
 });
+
 /* set a click event to the search icon */
 searchIocn.addEventListener("click", () => {
   /*make sure to clean the previus results */
   weekWeatherSection.innerHTML = "";
+  dayWeatherSection.innerHTML = "";
   hoursWeatherSection.childNodes.forEach((item) => {
     item.style.display = "none";
   });
