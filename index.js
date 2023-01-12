@@ -1,3 +1,12 @@
+/*create the main sections */
+const dayWeatherSection = document.createElement("div");
+dayWeatherSection.classList.add("day-weather");
+const weekWeatherSection = document.createElement("div");
+weekWeatherSection.classList.add("week-weather");
+const hoursWeatherSection = document.createElement("div");
+hoursWeatherSection.classList.add("hours-weather");
+const header = document.getElementsByClassName("header")[0];
+const input = document.getElementById("input");
 /*declaring a function to fetch data*/
 const getWeather = async (country) => {
   try {
@@ -6,12 +15,12 @@ const getWeather = async (country) => {
     );
 
     const result = await response.json();
-
+    const city = document.getElementById("city");
+    const date = document.getElementById("date");
     city.textContent = `${result.location.country}-${result.location.name}`;
     date.textContent = `${result.location.localtime}`;
-    var dayWeather = document.createElement("div");
-    dayWeather.classList.add("day-weather");
-    dayWeather.innerHTML = `
+    /* days section */
+    dayWeatherSection.innerHTML = `
         <div class='day-status'>
         <img id='day-weather-icon' src='${result.current.condition.icon}'/>
         <span id='weather-status'>
@@ -27,17 +36,17 @@ const getWeather = async (country) => {
         <span id='day-winds'>${result.current.wind_kph} kph</span>
         </div>
       `;
-    dayWeatherSection.appendChild(dayWeather);
+    document.body.appendChild(dayWeatherSection);
 
     result.forecast.forecastday.map((e) => {
-      var day = document.createElement("div");
+      const day = document.createElement("div");
       /** set hours section and hide it */
-      var hour = document.createElement("div");
+      const hour = document.createElement("div");
       hour.classList.add("hour");
       hour.style.display = "none";
       hour.setAttribute("data-id", e.date_epoch);
       e.hour.forEach((h) => {
-        var hDetailes = document.createElement("div");
+        const hDetailes = document.createElement("div");
         hDetailes.classList.add("hour-info");
         hDetailes.innerHTML = `
         <p>${h.time}</p>
@@ -62,6 +71,9 @@ const getWeather = async (country) => {
     `;
 
       weekWeatherSection.appendChild(day);
+      document.body.appendChild(weekWeatherSection);
+      document.body.appendChild(hoursWeatherSection);
+
       /*set click event to every day to display hours weather */
       day.addEventListener("click", () => {
         hoursWeatherSection.childNodes.forEach((item) => {
@@ -80,41 +92,27 @@ const getWeather = async (country) => {
   }
 };
 
-const city = document.getElementById("city");
-const date = document.getElementById("date");
-const weatherStatus = document.getElementById("weather-status");
-const dayHigh = document.getElementById("day-high");
-const header = document.getElementsByClassName("header")[0];
-const input = document.getElementById("input");
-const searchIocn = document.getElementById("search-icon");
-const dayWeatherSection = document.getElementById("day-weather");
-const dayWeatherIcon = document.getElementById("day-weather-icon");
-const dayWinds = document.getElementById("day-winds");
-const dayTempIcon = document.getElementById("day-temp-icon");
-const dayWindIcon = document.getElementById("day-wind-icon");
-const weekWeatherSection = document.getElementById("week-weather");
-const hoursWeatherSection = document.getElementById("hours-weather");
 /** dark mode */
 const toggle = document.getElementById("toggle");
 toggle.addEventListener("click", () => {
   header.classList.toggle("dark");
   toggle.classList.toggle("dark");
   document.body.classList.toggle("dark");
-  if (dayWeatherSection.firstChild)
+  if (dayWeatherSection)
     //cuz it does't exist at the beginning
-    dayWeatherSection.firstChild.classList.toggle("dark");
+    dayWeatherSection.classList.toggle("dark");
   weekWeatherSection.childNodes.forEach((item) => {
     item.classList.toggle("dark");
   });
 });
 
 /* set a click event to the search icon */
+const searchIocn = document.getElementById("search-icon");
 searchIocn.addEventListener("click", () => {
-  /*make sure to clean the previus results */
+  /*make sure to remove the previus results */
   weekWeatherSection.innerHTML = "";
   dayWeatherSection.innerHTML = "";
-  hoursWeatherSection.childNodes.forEach((item) => {
-    item.style.display = "none";
-  });
+  hoursWeatherSection.innerHTML = "";
+  /*fetch data*/
   getWeather(input.value);
 });
